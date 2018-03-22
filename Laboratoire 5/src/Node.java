@@ -116,6 +116,7 @@ public class Node {
 		// A completer
 		ArrayList<Integer> sortedArray=new ArrayList<Integer>();
 		sortedArray.add(this.valeur);
+		sortedArray.
 
 
 		return null;
