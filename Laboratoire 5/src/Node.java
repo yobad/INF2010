@@ -102,33 +102,53 @@ public class Node {
 	public Node findValue(int valeur) {
 		// A completer
 		Node element = null;
-		if (this.valeur == valeur)
-			element=this;
-		else{
-			for (int i = 0; i < enfants.size() && enfants.get(i).valeur >= valeur; i++)
-				element=  enfants.get(i).findValue(valeur);
+		if (this.valeur == valeur) {
+			element = this;
+		}
+		else {
+			for (int i = 0; i < enfants.size() && enfants.get(i).valeur >= valeur; i++) {
+				element = enfants.get(i).findValue(valeur);
 			}
+		}
 		return element;
+
 	}
 
 
 	public ArrayList<Integer> getElementsSorted() {
 		// A completer
-		ArrayList<Integer> sortedArray=new ArrayList<Integer>();
-		sortedArray.add(this.valeur);
-		sortedArray.
+		ArrayList<Integer> sortedArray = new ArrayList<Integer>();
+		Node nextMax;
+		while(!this.enfants.isEmpty()){
+			sortedArray.add(this.valeur);
+			nextMax = this.findMaxChild();
+			//print();
+			while(!nextMax.enfants.isEmpty()){
+				nextMax.moveUp();
+				nextMax = nextMax.findMaxChild();
+			}
+			nextMax.parent.removeEnfant(nextMax);
 
-
-		return null;
+		}
+		return sortedArray;
 	}
+	private Node findMaxChild(){
 
+		Node max = new Node(0);
+		for(int i= 0 ; i < this.enfants.size();i++){
+			if(this.enfants.get(i).valeur > max.valeur)
+				max = this.enfants.get(i);
+		}
+		return max;
+	}
 	public void print() {
         print("", true);
     }
 
     private void print(String prefix, boolean isTail) {
         System.out.println(prefix + (isTail ? "'-- " : "|-- ") + valeur);
-        for (int i = 0; i < enfants.size() - 1; i++) {
+
+      for (int i = 0; i < enfants.size() - 1; i++) {
             enfants.get(i).print(prefix + (isTail ? "    " : "|   "), false);
         }
         if (enfants.size() > 0) {
