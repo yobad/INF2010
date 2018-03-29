@@ -6,6 +6,7 @@ public class main {
 
 		// On cree des noeuds
 		Node a, b, c, d, e, f, g, h;
+
 		a = new Node(3);
 		b = new Node(4);
 		c = new Node(5);
@@ -15,6 +16,12 @@ public class main {
 		g = new Node(12);
 		h = new Node(13);
 
+		ArrayList<Node> temp = new ArrayList<Node>();
+		temp.add(null);
+		temp.add(a);
+		temp.add(2,e);
+		temp.set(2,a);
+		System.out.println(temp.get(0));
 		// TESTS DE FUSION
 
 		System.out.println("TEST DE L'INSERTION ET DE LA FUSION DE NODES\n");
@@ -74,8 +81,8 @@ public class main {
 
 		// TEST DE GET SORTED ELEMENTS
 		System.out.println("TEST DU SORT\n");
-
-		ArrayList<Integer> noeudsTries = h.getElementsSorted();
+		h.print();
+		ArrayList<Integer> noeudsTries = liste.get(2).getElementsSorted();
 		for (int valeur : noeudsTries) {
 			System.out.println(valeur + " ");
 		}
@@ -102,13 +109,13 @@ public class main {
 		monceau.print();
 
 		// TEST DU MONCEAU : DELETE
-		System.out.println("\nTEST DE MONCEAU.DELETE()\n");
+		/*System.out.println("\nTEST DE MONCEAU.DELETE()\n");
 
 		System.out.println("Suppression de 1 :" + monceau.delete(1));
 		System.out.println("Suppression de 12 :" + monceau.delete(12));
 
 		System.out.println("Resultat :");
-		monceau.print();
+		monceau.print();*/
 
 	}
 }

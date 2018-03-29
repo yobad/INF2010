@@ -106,8 +106,10 @@ public class Node {
 			element = this;
 		}
 		else {
-			for (int i = 0; i < enfants.size() && enfants.get(i).valeur >= valeur; i++) {
-				element = enfants.get(i).findValue(valeur);
+			for (int i = 0; i < enfants.size() && element==null; i++) { //Tant qu'on a pas parcouru tout les endants
+
+				if(enfants.get(i).valeur >= valeur)
+					element = enfants.get(i).findValue(valeur);
 			}
 		}
 		return element;
@@ -119,13 +121,15 @@ public class Node {
 		// A completer
 		ArrayList<Integer> sortedArray = new ArrayList<Integer>();
 		Node nextMax;
+		sortedArray.add(this.valeur);
 		while(!this.enfants.isEmpty()){
-			sortedArray.add(this.valeur);
 			nextMax = this.findMaxChild();
-			//print();
+			nextMax.moveUp();
+			sortedArray.add(this.valeur);
 			while(!nextMax.enfants.isEmpty()){
-				nextMax.moveUp();
 				nextMax = nextMax.findMaxChild();
+				nextMax.moveUp();
+
 			}
 			nextMax.parent.removeEnfant(nextMax);
 
