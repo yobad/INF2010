@@ -109,13 +109,13 @@ public class main {
 		monceau.print();
 
 		// TEST DU MONCEAU : DELETE
-		/*System.out.println("\nTEST DE MONCEAU.DELETE()\n");
+		System.out.println("\nTEST DE MONCEAU.DELETE()\n");
 
 		System.out.println("Suppression de 1 :" + monceau.delete(1));
 		System.out.println("Suppression de 12 :" + monceau.delete(12));
 
 		System.out.println("Resultat :");
-		monceau.print();*/
+		monceau.print();
 
 	}
 }

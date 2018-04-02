@@ -93,7 +93,7 @@ public class Node {
 			actuel.moveUp();
 			actuel=actuel.parent;
 		}
-		for (int i = 0; i < enfants.size() ; i++)
+		for (int i = 0; i < actuel.enfants.size() ; i++)
 			actuel.enfants.get(i).parent=null;
 
 		return  actuel.enfants;

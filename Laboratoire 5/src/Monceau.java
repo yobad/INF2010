@@ -85,19 +85,34 @@ public class Monceau {
 
 	public boolean delete(int val) {
 		// A completer
-		ArrayList<Node> childrenToRemove = new ArrayList<Node>();
-		Node current;
-		for(Node node:arbres) {
+		Monceau remainingChildren = new Monceau();
+		boolean hasBeenDeleted=false;//
 
-			if(node!=null) {
-				current = node;
-				while(current.findValue(val) != null) {
-					//Keep searching
-
-				}
-			}
+		//Verifie si l'élémemt existe au moins une fois dans le monceau
+		for (int i=0;i< arbres.size();i++){
+			if(arbres.get(i)!=null)
+				if(arbres.get(i).findValue(val)!=null)
+					hasBeenDeleted=true;
 		}
-		return false;
+		// l'element ne se trouve pas dans le monceau
+		if (!hasBeenDeleted)
+			return false;
+		else
+			for (int i=0;i< arbres.size();i++) {
+				if(arbres.get(i)!=null)
+					if (arbres.get(i).findValue(val) != null) {
+						//contient les sous arbres obtenus après node.delete
+						remainingChildren.arbres = arbres.get(i).findValue(val).delete();
+						arbres.set(i, null);
+						//Appel recursif pour supprimer la valeur si elle apparaît plusieurs fois
+						remainingChildren.delete(val);
+						//fusion du monceau de départ et du monceau temporaire
+						fusion(remainingChildren);
+
+
+					}
+			}
+		return true;
 	}
 
 	public void print() {
